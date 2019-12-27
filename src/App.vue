@@ -40,6 +40,10 @@
       </li>
     </ul>
 
+    NAME:<input v-model="bankName">
+    ASSET:<input v-model="bankAsset">
+    <button @click="addBank">追加!</button>
+
   </div>
 </template>
 
@@ -85,7 +89,9 @@
           {id: 2, name: '熊本銀行', asset: 1},
           {id: 3, name: '親和銀行', asset: 3},
           {id: 4, name: '十八銀行', asset: 3}
-        ]
+        ],
+        bankName: "",
+        bankAsset: ""
       }
     },
     // 算出プロパティ。dataと似たように扱うことの出来る、関数によって算出されたデータ
@@ -107,6 +113,16 @@
         } else {
           this.num++;
         }
+      },
+      addBank() {
+        let max = this.banks.reduce(function (a, b) {
+          return a > b.id ? a : b.id
+        }, 0);
+        this.banks.push({
+          id: max + 1,
+          name: this.bankName,
+          asset: this.bankAsset
+        })
       }
     }
   }
