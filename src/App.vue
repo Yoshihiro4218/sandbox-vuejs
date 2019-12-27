@@ -25,6 +25,13 @@
 
     <p v-bind:class="{child: isChild, 'is-active': isActive }"></p>
     <p v-bind:class="[isActive ? 'active' : 'normal', 'other']"></p>
+    <p v-bind:class="classObject"></p>
+    <img v-bind="attributes">
+
+    <svg xml:base="http://www.w3.org/2003/03/wsdl" version="1.1">
+      <circle v-bind:r="radius" cx="100" cy="75" fill="lightpink"/>
+    </svg>
+    <input type="range" min="0" max="100" v-model="radius">
 
   </div>
 </template>
@@ -51,7 +58,21 @@
         bankList: ['福岡銀行', '親和銀行', '熊本銀行', '十八銀行'],
         num: 0,
         isChild: true,
-        isActive: true
+        isActive: true,
+        classObject: {
+          fukuoka: true,
+          kumamoto: true,
+          nagasaki: true,
+          tokyo: false
+        },
+        attributes: {
+          id: 1,
+          alt: 'alt',
+          src: 'https://www.fukuoka-fg.com/en/files/items/11195/Image/brand_img_02.jpg',
+          width: '300px',
+          height: '150px;'
+        },
+        radius: 50
       }
     },
     // 算出プロパティ。dataと似たように扱うことの出来る、関数によって算出されたデータ
