@@ -33,6 +33,12 @@
     </svg>
     <input type="range" min="0" max="100" v-model="radius">
 
+    <ul>
+      <li v-for="bank in banks" v-bind:key="bank.id">
+        ID: {{bank.id}} NAME: {{bank.name}} ASSET: {{bank.asset}}
+      </li>
+    </ul>
+
   </div>
 </template>
 
@@ -72,7 +78,13 @@
           width: '300px',
           height: '150px;'
         },
-        radius: 50
+        radius: 50,
+        banks: [
+          {id: 1, name: '福岡銀行', asset: '16兆円'},
+          {id: 2, name: '熊本銀行', asset: '1兆円'},
+          {id: 3, name: '親和銀行', asset: '3兆円'},
+          {id: 4, name: '十八銀行', asset: '3兆円'}
+        ]
       }
     },
     // 算出プロパティ。dataと似たように扱うことの出来る、関数によって算出されたデータ
