@@ -3,7 +3,7 @@
     <!--    <img alt="Vue logo" src="./assets/logo.png">-->
     <HelloWorld msg="Welcome to Your Vue.js App"/>
 
-    <p>{{message}}</p>
+    <p ref="firstMessage">{{message}}</p>
     <p>{{message2.morning}}</p>
     <p>{{message2.day.length}}</p>
     <p>{{bankList}}</p>
@@ -106,6 +106,9 @@
     created() {
       //  このインスタンスの作成 & 初期化が終わったらすぐ
       this.message += ' + 最高! CREATED';
+    },
+    mounted() {
+      console.log(this.$refs.firstMessage)
     },
     methods: {
       countUp() {
