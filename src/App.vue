@@ -37,6 +37,7 @@
       <li v-for="(bank, index) in banks" v-bind:key="bank.id">
         ID: {{bank.id}} NAME: {{bank.name}} ASSET: {{bank.asset}}兆円 || {{index}}
         <span v-if="bank.asset > 10">つよい！</span>
+        <button @click="removeBank(index)">削除</button>
       </li>
     </ul>
 
@@ -123,6 +124,9 @@
           name: this.bankName,
           asset: this.bankAsset
         })
+      },
+      removeBank(index) {
+        this.banks.splice(index, 1);
       }
     }
   }
