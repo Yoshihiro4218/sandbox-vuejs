@@ -8,7 +8,7 @@
     <p>{{message2.day.length}}</p>
     <p>{{bankList}}</p>
     <p>{{bankList[0]}}</p>
-    <button v-on:click="countUp">Bank!</button>
+    <button @click="countUp">Bank!</button>
     <p>{{bankList[num]}}</p>
     <button v-on:click="show=!show">BUTTON</button>
     <!--    <button v-on:click="computedMessage">BUTTON2</button>-->
@@ -23,7 +23,7 @@
 
     <pre>{{$data}}</pre>
 
-    <p v-bind:class="{child: isChild, 'is-active': isActive }"></p>
+    <p :class="{child: isChild, 'is-active': isActive }"></p>
     <p v-bind:class="[isActive ? 'active' : 'normal', 'other']"></p>
     <p v-bind:class="classObject"></p>
     <img v-bind="attributes">
@@ -34,8 +34,9 @@
     <input type="range" min="0" max="100" v-model="radius">
 
     <ul>
-      <li v-for="bank in banks" v-bind:key="bank.id">
-        ID: {{bank.id}} NAME: {{bank.name}} ASSET: {{bank.asset}}
+      <li v-for="(bank, index) in banks" v-bind:key="bank.id">
+        ID: {{bank.id}} NAME: {{bank.name}} ASSET: {{bank.asset}}兆円 || {{index}}
+        <span v-if="bank.asset > 10">つよい！</span>
       </li>
     </ul>
 
@@ -80,10 +81,10 @@
         },
         radius: 50,
         banks: [
-          {id: 1, name: '福岡銀行', asset: '16兆円'},
-          {id: 2, name: '熊本銀行', asset: '1兆円'},
-          {id: 3, name: '親和銀行', asset: '3兆円'},
-          {id: 4, name: '十八銀行', asset: '3兆円'}
+          {id: 1, name: '福岡銀行', asset: 16},
+          {id: 2, name: '熊本銀行', asset: 1},
+          {id: 3, name: '親和銀行', asset: 3},
+          {id: 4, name: '十八銀行', asset: 3}
         ]
       }
     },
