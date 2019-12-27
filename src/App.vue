@@ -44,7 +44,18 @@
     NAME:<input v-model="bankName">
     ASSET:<input v-model="bankAsset">
     <button @click="addBank">追加!</button>
+    <br>
+    <br>
 
+    <button @click="doClicked">くぅ疲</button>
+    <button @click.right="doClicked">くぅ疲右クリック</button>
+    <a href="https://google.com" @click.prevent="doClicked">くぅ疲prevent</a>
+    <button @click.capture="doClicked">くぅ疲capture</button>
+    <input @keydown.esc="doClicked" value="くぅ疲escape">
+    <p v-if="clicked">くぅ～疲れましたｗこれにて2019年終了ですｗｗ</p>
+
+
+    <div id="bottom"></div>
   </div>
 </template>
 
@@ -92,7 +103,8 @@
           {id: 4, name: '十八銀行', asset: 3}
         ],
         bankName: "",
-        bankAsset: ""
+        bankAsset: "",
+        clicked: false
       }
     },
     // 算出プロパティ。dataと似たように扱うことの出来る、関数によって算出されたデータ
@@ -130,6 +142,9 @@
       },
       removeBank(index) {
         this.banks.splice(index, 1);
+      },
+      doClicked() {
+        this.clicked = this.clicked === false;
       }
     }
   }
@@ -143,6 +158,10 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+
+  #bottom {
+    margin-top: 300px;
   }
 
   .v-enter-active, .v-leave-active {
