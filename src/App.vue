@@ -16,6 +16,16 @@
       <p v-if="show">Pokemon!!</p>
     </transition>
 
+    <p>{{message.length >= 10 ? '10文字以上' : "10文字未満"}}</p>
+    <p>{{Math.random()}}</p>
+
+    <input type="text" :value="message">
+
+    <pre>{{$data}}</pre>
+
+    <p v-bind:class="{child: isChild, 'is-active': isActive }"></p>
+    <p v-bind:class="[isActive ? 'active' : 'normal', 'other']"></p>
+
   </div>
 </template>
 
@@ -39,7 +49,9 @@
           day: 'こんにちは！'
         },
         bankList: ['福岡銀行', '親和銀行', '熊本銀行', '十八銀行'],
-        num: 0
+        num: 0,
+        isChild: true,
+        isActive: true
       }
     },
     // 算出プロパティ。dataと似たように扱うことの出来る、関数によって算出されたデータ
