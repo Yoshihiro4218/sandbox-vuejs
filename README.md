@@ -30,3 +30,5 @@
 3. v-text: Mustacheの代わりにテキストコンテンツを描画
 4. v-html: HTMLタグをそのまま描画する
 5. v-cloak: インスタンスの準備が終わると取り除かれる(CSS`[v-cloak]{display: none;}`みたいに書いて、テンプレートにMustacheが表示されるのを防いだり出来る)
+
+## 125ページまで
