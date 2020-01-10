@@ -54,6 +54,22 @@
     <input @keydown.esc="doClicked" value="くぅ疲escape">
     <p v-if="clicked">くぅ～疲れましたｗこれにて2019年終了ですｗｗ</p>
 
+    <br>
+    <br>
+
+    <input v-model="message3">
+    <br>
+    <textarea v-model="message3"></textarea>
+    <p>{{message3}}</p>
+    <br>
+    <input type="checkbox" v-model="checkBox">チェックボックス: {{checkBox}}
+    <br>
+    <input type="checkbox" v-model="bankList2" value="福岡銀行">福岡銀行
+    <input type="checkbox" v-model="bankList2" value="熊本銀行">熊本銀行
+    <input type="checkbox" v-model="bankList2" value="親和銀行">親和銀行
+    <p>{{bankList2}}</p>
+    <br>
+    <input type="text" v-model.number="price">{{price}}
 
     <div id="bottom"></div>
   </div>
@@ -104,7 +120,11 @@
         ],
         bankName: "",
         bankAsset: "",
-        clicked: false
+        clicked: false,
+        message3: "Kadono",
+        checkBox: true,
+        bankList2: ["福岡銀行"],
+        price: 177
       }
     },
     // 算出プロパティ。dataと似たように扱うことの出来る、関数によって算出されたデータ
