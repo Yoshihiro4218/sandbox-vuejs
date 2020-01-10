@@ -54,6 +54,44 @@
     <input @keydown.esc="doClicked" value="くぅ疲escape">
     <p v-if="clicked">くぅ～疲れましたｗこれにて2019年終了ですｗｗ</p>
 
+    <br>
+    <br>
+
+    <input v-model="message3">
+    <br>
+    <textarea v-model="message3"></textarea>
+    <p>{{message3}}</p>
+    <br>
+    <input type="checkbox" v-model="checkBox">チェックボックス: {{checkBox}}
+    <br>
+    <input type="checkbox" v-model="bankList2" value="福岡銀行">福岡銀行
+    <input type="checkbox" v-model="bankList2" value="熊本銀行">熊本銀行
+    <input type="checkbox" v-model="bankList2" value="親和銀行">親和銀行
+    <p>{{bankList2}}</p>
+    <br>
+    <input type="text" v-model.number="price">{{price}}
+    <br>
+    getter, setterを作ることで、width, halfWidthで双方向フローになり、どちらからも常に同期する
+    <br>
+    元<input type="text" v-model.number="width" placeholder="元の数">
+    半分<input type="text" v-model.number="halfWidth" placeholder="半分">
+    <p>{{width}}の半分は{{halfWidth}}です。</p>
+
+    <div>
+      ----------------------------------------------------------------------------------------------------------------
+      <br>
+      <input v-model.number="budget">兆円以下に絞り込む
+      <input v-model.number="limit">件を表示
+
+      <p>{{matched.length}}件中{{limited.length}}件を表示中</p>
+      <ul>
+        <li v-for="item in limited" v-bind:key="item.id">
+          {{item.name}} {{item.price}}兆円
+        </li>
+      </ul>
+      <br>
+      ----------------------------------------------------------------------------------------------------------------
+    </div>
 
     <div id="bottom"></div>
   </div>
@@ -104,7 +142,24 @@
         ],
         bankName: "",
         bankAsset: "",
-        clicked: false
+        clicked: false,
+        message3: "Kadono",
+        checkBox: true,
+        bankList2: ["福岡銀行"],
+        price: 177,
+        width: 100,
+        budget: 300,
+        limit: 2,
+        prefectures: [
+          {id: 1, name: '福岡', price: 500},
+          {id: 2, name: '長崎', price: 200},
+          {id: 3, name: '熊本', price: 400},
+          {id: 4, name: '大分', price: 250},
+          {id: 5, name: '宮崎', price: 150},
+          {id: 6, name: '鹿児島', price: 350},
+          {id: 7, name: '佐賀', price: 100},
+          {id: 8, name: '沖縄', price: 300}
+        ]
       }
     },
     // 算出プロパティ。dataと似たように扱うことの出来る、関数によって算出されたデータ
@@ -112,6 +167,25 @@
       computedMessage: function () {
         //  処理した結果をデータとして返す
         return this.message + '!!!!!(ﾆｯｺﾘ'
+      },
+      halfWidth: {
+        get: function () {
+          return this.width / 2;
+        },
+        set: function (val) {
+          this.width = val * 2;
+        }
+      },
+      // budget以下のリストを返す算出プロパティ
+      matched: function () {
+        return this.prefectures.filter(x => x.price <= this.budget)
+        // return this.prefectures.filter(function(el) {
+        //   return el.price <= this.budget
+        // }, this)
+      },
+      //  matchedで返ったデータをlimit件返す算出プロパティ
+      limited: function () {
+        return this.matched.slice(0, this.limit)
       }
     },
     //  ライフサイクルフック
