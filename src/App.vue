@@ -70,6 +70,11 @@
     <p>{{bankList2}}</p>
     <br>
     <input type="text" v-model.number="price">{{price}}
+    <br>
+    getter, setterを作ることで、width, halfWidthで双方向フローになり、どちらからも常に同期する
+    <input type="text" v-model.number="width" placeholder="元の数">
+    <input type="text" v-model.number="halfWidth" placeholder="半分">
+    <p>{{width}}の半分は{{halfWidth}}です。</p>
 
     <div id="bottom"></div>
   </div>
@@ -124,7 +129,8 @@
         message3: "Kadono",
         checkBox: true,
         bankList2: ["福岡銀行"],
-        price: 177
+        price: 177,
+        width: 100
       }
     },
     // 算出プロパティ。dataと似たように扱うことの出来る、関数によって算出されたデータ
@@ -132,6 +138,14 @@
       computedMessage: function () {
         //  処理した結果をデータとして返す
         return this.message + '!!!!!(ﾆｯｺﾘ'
+      },
+      halfWidth: {
+        get: function () {
+          return this.width / 2;
+        },
+        set: function (val) {
+          this.width = val * 2;
+        }
       }
     },
     //  ライフサイクルフック
